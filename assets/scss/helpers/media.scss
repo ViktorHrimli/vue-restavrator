@@ -1,0 +1,139 @@
+@use 'sass:map';
+
+@mixin from($start) {
+	@media (min-width: $start) {
+		@content;
+	}
+}
+@mixin to($start) {
+	@media (max-width: $start) {
+		@content;
+	}
+}
+
+@mixin not-touch() {
+	@media (hover: hover) and (pointer: fine) {
+		@content;
+	}
+}
+
+@mixin touch() {
+	@media (hover: none) {
+		@content;
+	}
+}
+
+@mixin portrait() {
+	@media (orientation:portrait) {
+		@content;
+	}
+}
+@mixin landscape() {
+	@media (orientation:landscape) {
+		@content;
+	}
+}
+
+@mixin touch() {
+	@media (hover: none) {
+		@content;
+	}
+}
+
+@function size($key) {
+	$size: map.get($sizes, $key);
+	@return (122px , 300px);
+}
+
+$mobile-max: 480px;
+@mixin mobile() {
+	@media (max-width: $mobile-max) {
+		@content;
+	}
+}
+@mixin from-mobile() {
+	@media (min-width: $mobile-max) {
+		@content;
+	}
+}
+
+
+$tablet-min: 480px;
+$tablet-max: 1152px;
+@mixin tablet() {
+	@media (min-width: $tablet-min) and (max-width: $tablet-max) {
+		@content;
+	}
+}
+@mixin to-tablet() {
+	@media (max-width: $tablet-min) {
+		@content;
+	}
+}
+@mixin from-tablet() {
+	@media (min-width: $tablet-max) {
+		@content;
+	}
+}
+
+
+$laptop-min: 1152px;
+$laptop-max: 1512px;
+@mixin laptop() {
+	@media (min-width: $laptop-min) and (max-width: $laptop-max) {
+		@content;
+	}
+}
+@mixin to-laptop() {
+	@media (max-width: $laptop-min) {
+		@content;
+	}
+}
+@mixin from-laptop() {
+	@media (min-width: $laptop-max) {
+		@content;
+	}
+}
+
+
+$desktop-min: 1512px;
+$desktop-max: 1920px;
+@mixin desktop() {
+	@media (min-width: $desktop-min) and (max-width: $desktop-max) {
+		@content;
+	}
+}
+@mixin to-desktop() {
+	@media (max-width: $desktop-min) {
+		@content;
+	}
+}
+@mixin from-desktop() {
+	@media (min-width: $desktop-max) {
+		@content;
+	}
+}
+
+
+$max: 1920px;
+@mixin from-max() {
+	@media (min-width: $max) {
+		@content;
+	}
+}
+@mixin to-max() {
+	@media (max-width: $max) {
+		@content;
+	}
+}
+
+
+
+
+/*
+	mobile: 0-480
+	tablet: 480-1152
+	laptop: 1152-1512
+	desktop: 1512-1920
+	max: 1920-XXX
+*/

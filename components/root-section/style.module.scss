@@ -1,0 +1,134 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '@scss/mixins/adaptiveSize';
+@use '@scss/mixins/rfs' with(
+	$rfs-breakpoint: 1152px,
+	$rfs-factor: 8.99,
+);
+@use '@scss/helpers/types';
+@use '@scss/modules/gutter';
+@use '@scss/modules/container';
+
+
+$x-padding: 20px !default;
+$absorbs: (0,25,50,75,100) !default;
+$containers: container.$sizes !default;
+
+$absorbSlug: abp !default;
+$sizeSlug: cw !default;
+$horizontalPaddingSlug: cp !default;
+$paddingTopSlug: pt !default;
+$paddingBottomSlug: pb !default;
+$marginTopSlug: mt !default;
+$marginBottomSlug: mb !default;
+
+
+
+@mixin adaptive-gutter($param, $size) {
+	// @include rfs.rfs($size, $param);
+	@include adaptiveSize.full-adaptive-size($param, $size, $size*1.6, 375, 1200);
+}
+
+
+.section-wp {
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	position: relative;
+
+	&.#{$horizontalPaddingSlug} {
+		padding-left: $x-padding;
+		padding-right: $x-padding;
+	}
+}
+
+.section-body {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.section-container {
+	width: 100%;
+}
+
+
+/*
+	360
+	768
+	1024
+	1200
+	1350
+	1600
+	1900
+
+*/
+
+// .cw-l {
+// 	padding: 0 20px;
+// 	@media (min-width: 360px) {
+// 		padding: 0 30px;
+// 	}
+// 	@media (min-width: 768px) {
+// 		padding: 0 100px;
+// 	}
+// 	@media (min-width: 1024px) {
+// 		padding: 0 120px;
+// 	}
+// 	@media (min-width: 1200px) {
+// 		padding: 0 150px;
+// 	}
+// 	@media (min-width: 1350px) {
+// 		padding: 0 180px;
+// 	}
+// 	@media (min-width: 1350px) {
+// 		padding: 0 180px;
+// 	}
+// 	@media (min-width: 1600px) {
+// 		padding: 0 220px;
+// 	}
+// 	@media (min-width: 1900px) {
+// 		padding: 0 270px;
+// 	}
+// }
+
+
+.cw-m {
+	max-width: 1160px;
+}
+.cw-xs {
+	max-width: 560px;
+}
+
+ /* container width sizes -------------- */
+//  @each $size, $value in $containers {
+// 	.#{$sizeSlug}-#{$size} {
+// 		@if (types.is-relative-length($value) or types.is-percentage($value)) {
+// 			max-width: $value;
+// 		}
+// 		@else {
+// 			max-width: $value + px;
+// 		}
+
+// 		@if ($size=='borderless') {
+// 			position: relative;
+// 			overflow: hidden;
+// 		}
+// 	}
+// }
+
+
+/* absorb padding -------------- */
+@each $size, $width in $absorbs {
+	.#{$absorbSlug}-#{$size} {
+		$w: 100%;
+		$hp: $x-padding;
+		$asp: math.div($hp, 100) * $size;
+		$as: calc($w + $asp*2);
+
+		width: $w;
+		width: $as;
+
+		margin-left: -$asp;
+		margin-right: -$asp;
+	}
+}

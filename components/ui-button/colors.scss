@@ -1,0 +1,5 @@
+@use '@scss/color';
+
+$colors: (
+	'default': color.$accent,
+);

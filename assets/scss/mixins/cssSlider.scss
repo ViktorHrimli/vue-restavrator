@@ -1,0 +1,16 @@
+@mixin slider {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: nowrap;
+	align-items: center;
+
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+
+	&>* {
+		scroll-snap-align: center;
+	}
+}

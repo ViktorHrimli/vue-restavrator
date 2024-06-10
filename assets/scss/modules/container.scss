@@ -1,0 +1,39 @@
+@use 'sass:map';
+@use 'sass:math';
+
+$generate-css-modules: false !default;
+
+$y-padding: 20px !default;
+$x-padding: 20px !default;
+$absorbs: (0, 25, 50, 75, 100) !default;
+
+$sizes: (
+	borderless: 100%,
+	fluid: '',
+	s:680,
+	m:820,
+	l:1080,
+	xl:1260,
+) !default;
+
+
+@mixin absorb($size) {
+	$w: 100%;
+	$hp: $x-padding;
+	$asp: math.div($hp, 100) * $size;
+	$as: calc($w + $asp*2);
+
+	width: $w;
+	width: $as;
+
+	margin-left: -$asp;
+	margin-right: -$asp;
+}
+
+@function get($size) {
+	@return map.get($sizes, $size);
+}
+
+@function inPx($size) {
+	@return map.get($sizes, $size) + px;
+}

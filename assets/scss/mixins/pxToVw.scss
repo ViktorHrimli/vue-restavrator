@@ -1,0 +1,7 @@
+@mixin pxToVw($param, $param-size, $screen-size) {
+	$returnSize: calc(($param-size * 100) / $screen-size);
+
+	// use fallback for $param
+	#{$param}:$param-size+px;
+	#{$param}:$returnSize+vw;
+}

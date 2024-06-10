@@ -1,0 +1,68 @@
+@use 'sass:map';
+@use '../mixins/rfs.scss';
+@use '@scss/gutters';
+
+
+$sizes: (gutters.$sizes) !default;
+$unit: gutters.$unit !default;
+
+$slugs: (
+	'padding-top': 'pt',
+	'padding-bottom': 'pb',
+	'margin-top': 'mt',
+	'margin-bottom': 'mb',
+);
+
+
+/*
+	HELPERS
+*/
+
+@function get($size) {
+	@return map.get($sizes, $size);
+}
+
+@mixin rfs($size, $prop) {
+	$value: map.get($sizes, $size);
+	@include rfs.rfs($value, $prop)
+}
+
+
+/*
+	UTILS
+*/
+
+@mixin setupGutter($param, $value) {
+	@media (max-width: 480px) {
+		#{$param}: $value + $unit;
+	}
+
+	@media (min-width: 480px) and (max-width: 1360px) {
+		$px: $value+$unit;
+		$v: calc($px + calc($px/20 + 2.2vw));
+		#{$param}: $v;
+	}
+
+	@media (min-width: 1360px) {
+		#{$param}: $value*1.765 + $unit;
+	}
+}
+
+[data-mt] {
+	margin-top: attr(mt em);
+}
+
+
+/*
+	MAKE CSS CLASSES
+*/
+
+@each $size, $value in $sizes {
+	@if ($value!='') {
+		@each $param, $slug in $slugs {
+			.#{$slug}-#{$size} {
+				@include setupGutter($param, $value);
+			}
+		}
+	}
+}

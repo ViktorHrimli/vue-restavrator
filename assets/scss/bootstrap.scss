@@ -1,0 +1,63 @@
+@use '@scss/gutters';
+$generate-css-modules: true;
+
+
+
+/* Project colors  */
+@use './modules/color' with (
+	$generate-css-modules: $generate-css-modules
+);
+
+/* Project container sizes */
+@use './modules/container' with (
+	$sizes: (
+		borderless: 100%,
+		fluid: '',
+		xxs:420,
+		xs:500,
+		s:680,
+		m:820,
+		l:1440,
+		xl:1920,
+	),
+
+	$generate-css-modules: $generate-css-modules
+);
+
+/* Project gutters  */
+@use './modules/gutter' with (
+	$sizes: (gutters.$sizes),
+	// $generate-css-modules: $generate-css-modules
+);
+
+/* Project typo  */
+@use './modules/typo' with (
+	$fixed: (
+		s: 16,
+		m: 20,
+	),
+	$adaptive: (
+		's': (
+			'mobile': 16,
+			'desktop': 16,
+		),
+		'm': (
+			'mobile': 18,
+			'desktop': 20,
+		),
+		'l': (
+			'mobile': 24,
+			'desktop': 30,
+		),
+		'xl': (
+			'mobile': 24,
+			'desktop': 40,
+		),
+		'xxl': (
+			'mobile': 60,
+			'desktop': 80,
+		),
+	),
+
+	$generate-css-modules: $generate-css-modules
+);

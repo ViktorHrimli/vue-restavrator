@@ -1,0 +1,25 @@
+@import './pxToVw.scss';
+
+@mixin relative($fromSize, $toSize, $maxWidth, $minWidth) {
+	font-size: $toSize+px ;
+	font-size: calc(#{$toSize + px} + #{$fromSize - $toSize} * (100vw - #{$minWidth + px}) / #{$maxWidth - $minWidth});
+}
+
+
+@mixin adaptive($desktopFontSize, $mobileFontSize, $desktopWidth, $mobileWidth) {
+
+	$minWidth:$mobileWidth+px;
+	$maxWidth:$desktopWidth+px;
+
+	@media (max-width: $minWidth) {
+		@include pxToVw('font-size', $mobileFontSize, 375);
+	}
+
+	@media (min-width: $minWidth) and (max-width: $maxWidth) {
+		@include relative($desktopFontSize, $mobileFontSize, $desktopWidth, $mobileWidth);
+	}
+
+	@media (min-width: $maxWidth) {
+		font-size: $desktopFontSize+px;
+	}
+}

@@ -1,0 +1,49 @@
+@use 'sass:map';
+@use '../mixins/font';
+
+$generate-css-modules: false !default;
+
+$adaptive: () !default;
+$fixed: () !default;
+$relative: () !default;
+
+$mobileWidth: 375;
+$desktopWidth: 1252;
+
+
+@mixin adaptive($size) {
+	$mobileSize: map.get($adaptive,$size,'mobile');
+	$desktopSize: map.get($adaptive,$size,'desktop');
+	@include font.adaptive($desktopSize, $mobileSize, $desktopWidth, $mobileWidth);
+}
+// @mixin relative($size) {
+// 	$mobileSize: map.get($relative,$size,'mobile');
+// 	$desktopSize: map.get($relative,$size,'desktop');
+// 	@include font.relative($desktopSize, $mobileSize, $desktopWidth, $mobileWidth);
+// }
+
+@mixin fixed($size) {
+	$fontSize: map.get($fixed,$size);
+	font-size: $fontSize+px;
+}
+
+
+@if ($generate-css-modules) {
+	@each $size, $map in $adaptive {
+		.fs-adaptive-#{$size} {
+			@include adaptive($size);
+		}
+	}
+
+	// @each $size, $sizeMap in $relative {
+	// 	.fs-relative-#{$size} {
+	// 		@include relative($size);
+	// 	}
+	// }
+
+	@each $size, $map in $fixed {
+		.fs-fixed-#{$size} {
+			@include fixed($size);
+		}
+	}
+}

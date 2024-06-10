@@ -1,0 +1,7 @@
+@mixin pxToVh($prop, $px, $size) {
+	$returnSize: ($px * 100) / $size;
+	
+	// use fallback for $prop
+	#{$prop}:$px+px;
+	#{$prop}:$returnSize+vh;
+}

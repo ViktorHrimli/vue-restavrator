@@ -1,0 +1,26 @@
+@import './pxToVw';
+
+@mixin adaptive-size($param, $size-min, $size-max, $screen-min, $screen-max) {
+	#{$param}: #{$size-min}px;
+
+	@media only screen and (min-width: #{$screen-min}px) {
+		#{$param}: calc(
+			#{$size-min}px + #{($size-max - $size-min)} * (100vw - #{$screen-min}px) / (#{$screen-max} - #{$screen-min})
+		);
+	}
+}
+
+@mixin full-adaptive-size($prop, $min-size, $max-size, $min-screen, $max-screen) {
+
+  @media (max-width: $min-screen + px) {
+  	@include pxToVw($prop, $min-size, $min-screen);
+  }
+
+	@media (min-width: $min-screen + px) and (max-width:$max-screen + px) {
+		@include adaptive-size($prop, $min-size, $max-size, $min-screen, $max-screen)
+	}
+
+	@media (min-width: $max-screen + px) {
+		#{$prop}: $max-size + px;
+	}
+}

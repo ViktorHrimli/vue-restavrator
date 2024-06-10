@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+	DirectorySlash Off
+	RewriteEngine on
+	RewriteBase /
+
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  ErrorDocument 404 https://%{HTTP_HOST}/404
+
+  # Парцює для сторінок
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^(.*)$ $1/index.html [L]
+</IfModule>

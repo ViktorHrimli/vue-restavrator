@@ -1,0 +1,20 @@
+.fw-900 {
+	font-weight: 900;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+
+.wt-animation {}
+.wt-animation>span {
+	display: inline-flex;
+	overflow: hidden;
+	position: relative;
+}
+
+.wt-animation>span>span {
+	will-change: transform, opacity;
+	opacity: 0;
+}

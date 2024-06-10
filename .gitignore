@@ -1,0 +1,12 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
+.ssh
+/public/_cases
+/pages/test.vue
+pages/test.vue

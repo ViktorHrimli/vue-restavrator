@@ -1,0 +1,44 @@
+html, body {
+	font-weight: 500;
+	font-family: 'Museo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-display: block;
+}
+
+b {
+	font-weight: 900;
+}
+
+/* @font-face {
+  font-family: 'Museo';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Museo'), url('../font/museo-100.woff2') format('woff2');
+} */
+
+/* @font-face {
+  font-family: 'Museo';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Museo'), url('../font/museo-300.woff2') format('woff2');
+} */
+
+@font-face {
+  font-family: 'Museo';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Museo'), url('../font/museo-500.woff2') format('woff2');
+}
+
+/* @font-face {
+  font-family: 'Museo';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Museo'), url('../font/museo-700.woff2') format('woff2');
+} */
+
+@font-face {
+  font-family: 'Museo';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Museo'), url('../font/museo-900.woff2') format('woff2');
+}
