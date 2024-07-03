@@ -1,5 +1,11 @@
 <template>
-	<root-section padding-top="i" padding-bottom="i" class="c-wp"> </root-section>
+	<root-section padding-top="i" padding-bottom="i" class="c-wp">
+		<div class="content-container">
+			<div class="component-copyright">
+				<span v-html="showYear" /> @Restavrator_ua&nbsp;&trade;
+			</div>
+		</div>
+	</root-section>
 </template>
 
 <style scoped lang="scss">
