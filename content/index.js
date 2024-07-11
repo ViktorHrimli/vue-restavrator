@@ -26,13 +26,13 @@ const body = [
 			title: 'Зробимо непомітним:',
 			list: [
 				{ content:'Пошкодження стільниці', icon:'stop' },
-				{ content:'Опали, тріщини, сколи на підлозі', icon:'grid-3' },
+				{ content:'Пошкодження на паркеті/ламінаті', icon:'grid-3' },
 				{ content:'Опали від вогню', icon:'flame' },
 				{ content:'Пошкодження фасадів корпусних меблів', icon:'element-1' },
-				{ content:'Зайві отвори після ремонту', icon:'graph' },
-				{ content:'Пропали на меблях, стільниці, підлозі, тощо', icon:'bubble' },
+				{ content:'Зайві отвори під час ремонту', icon:'graph' },
+				{ content:'Пошкодження ванни та умивальника', icon:'bubble' },
 				{ content:'Тріщини та&nbsp;сколи на плитці', icon:'picture-frame' },
-				{ content:'Міжкімнатні двері, коробку та&nbsp;обналічник', icon:'sidebar-left' },
+				{ content:'Двері, коробка та лиштва', icon:'sidebar-left' },
 				{ content:'Пошкодження від домашніх улюбленців', icon:'pet' },
 				{ content:'Пошкодження від&nbsp;води', icon:'drop' },
 			],
@@ -53,13 +53,16 @@ const body = [
 			content:'Більше виконаних робіт у нас в&nbsp;Інстаграмі',
 			instagram: instagram,
 			list: [
-				['/images/case/0.before.mp4','/images/case/0.after.jpg'],
-				['/images/case/1.before.jpg','/images/case/1.after.jpg'],
-				['/images/case/2.before.jpg','/images/case/2.after.jpg'],
-				['/images/case/3.before.jpg','/images/case/3.after.jpg'],
-				['/images/case/4.before.jpg','/images/case/4.after.jpg'],
-				['/images/case/5.before.jpg','/images/case/5.after.jpg'],
-				['/images/case/6.before.jpg','/images/case/6.after.jpg'],
+				['/images/case/0.before.mp4','/images/case/0.after.jpg', 'Пошкодження на паркеті/ламінаті'],
+				['/images/case/1.before.jpg','/images/case/1.after.jpg', 'Тріщини та сколи на плитці'],
+				['/images/case/2.before.jpg','/images/case/2.after.jpg', 'Пошкодження фасадів корпусних меблів'],
+				['/images/case/3.before.jpg','/images/case/3.after.jpg', 'Тріщини та сколи на плитці'],
+				['/images/case/4.before.jpg','/images/case/4.after.jpg', 'Пошкодження від домашніх улюбленців'],
+				['/images/case/5.before.jpg','/images/case/5.after.jpg', 'Опали від вогню'],
+				['/images/case/6.before.jpg', '/images/case/6.after.jpg', 'Зайві отвори під час ремонту'],
+				['/images/case/7.before.jpg', '/images/case/7.after.jpg', 'Пошкодження ванни та умивальника'],
+
+				
 			]
 		},
 		{
@@ -150,7 +153,7 @@ const body = [
 				{
 					question: 'Дешевше купити нове чи реставрувати?',
 					answer: [
-						'Якщо порахувати також супутні витрати то частіше все ж дешевше відновити. Коли мова ведеться про рідкісні, дорогі, дорогі вашій пам‘яті речі - дешевше відновити. Проте справді бувають вападки, коли дешевше замінити зіпсований об‘єкт ніж реставрувати його.',
+						'Якщо порахувати також час та супутні витрати то частіше все ж дешевше відновити. Коли мова ведеться про рідкісні, дорогі, дорогі вашій пам‘яті речі - дешевше відновити. Проте справді бувають вападки, коли дешевше замінити зіпсований об‘єкт ніж реставрувати його.',
 					]
 				},
 				{

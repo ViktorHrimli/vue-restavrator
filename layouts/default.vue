@@ -1,14 +1,13 @@
 <template>
-  <div class="fs-adaptive-m layout-wp">
+	<div class="fs-adaptive-m layout-wp">
+		<the-header />
 
-  	<the-header/>
-
-  	<main class='layout-main'>
+		<main class="layout-main">
 			<slot />
-  	</main>
+		</main>
 
-		<the-footer/>
-    <the-copyright/>
-    <the-footer-cta/>
-  </div>
+		<the-footer />
+		<the-copyright />
+		<the-footer-cta />
+	</div>
 </template>

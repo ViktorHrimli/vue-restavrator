@@ -16,31 +16,7 @@
       :bound-left="boundLeft"
       :bound-right="boundRight"
     >
-      <!-- <v-button
-        v-if="hideArrowsOnBound ? !boundLeft : true"
-        type="button"
-        :aria-label="i18n.slideLeft"
-        :disabled="boundLeft"
-        class="
-          vs-carousel__arrows
-          vs-carousel__arrows--left
-        "
-        @click="changeSlide(-1)"
-      >
-				<v-svg class="c-svg" src="/images/arrow-left.svg"/>
-			</v-button>
-
-      <v-button
-        v-show="hideArrowsOnBound ? !boundRight : true"
-        type="button"
-        :aria-label="i18n.slideRight"
-        :disabled="boundRight"
-        class="
-          vs-carousel__arrows
-          vs-carousel__arrows--right
-        "
-        @click="changeSlide(1)"
-      ><v-svg class="c-svg" src="/images/arrow-right.svg"/></v-button> -->
+    
     </slot>
   </div>
 </template>
@@ -76,10 +52,16 @@
 	margin: 0;
 
 	@include media.mobile {
-		padding: 0 10px;
-		max-width: calc(100% + 40px);
-    margin-left: -20px;
-    margin-right: -20px;
+
+        padding: 0 10px;
+    max-width: calc(100% + 20px); // Измените, если нужно
+    margin-left: -10px;
+    margin-right: -10px;
+    // oldest style
+		// padding: 0 10px;
+		// max-width: calc(100% + 40px);
+    // margin-left: -20px;
+    // margin-right: -20px;
 	}
 }
 
@@ -139,6 +121,7 @@ import vSvg from 'vue-inline-svg'
 
 const SCROLL_DEBOUNCE = 100
 const RESIZE_DEBOUNCE = 410
+const AUTO_SLIDE_INTERVAL = 2500 
 
 const props = {
   /**
@@ -185,7 +168,7 @@ export default {
   props,
   setup(_, { emit }) {
     const vsWrapper = ref(null)
-    const boundLeft = ref(true)
+    const boundLeft = ref(false)
     const boundRight = ref(false)
     const slidesWidth = ref([])
     const wrapperScrollWidth = ref(0)
@@ -195,6 +178,7 @@ export default {
     const maxPages = ref(0)
     const onResizeFn = ref(null)
     const onScrollFn = ref(null)
+    const autoSlideInterval = ref(null)
 
     // Watchers
     watch(currentPage, (current, previous) => {
@@ -254,24 +238,23 @@ export default {
         width: node.offsetWidth
       }))
     }
-    const calcNextWidth = direction => {
-      const nextSlideIndex = direction > 0 ? currentPage.value : currentPage.value + direction
-      const width = slidesWidth.value[nextSlideIndex].width || 0
 
-      if (!width) {
-        return
-      }
-
-      return width * direction
+    const startAutoSlide = () => {
+    autoSlideInterval.value = setInterval(() => {
+        changeSlide(1)
+    }, AUTO_SLIDE_INTERVAL)
     }
-    const calcCurrentPage = () => {
-      const getCurrentPage = slidesWidth.value.findIndex(slide => {
-        // Find the closest point, with 5px approximate.
-        return approximatelyEqual(slide.offsetLeft, currentPos.value, 5)
-      })
 
-      if (getCurrentPage !== -1 && getCurrentPage !== -2) {
-        currentPage.value = getCurrentPage || 0
+    const stopAutoSlide = () => {
+      clearInterval(autoSlideInterval.value)
+    }
+
+   const calcCurrentPage = () => {
+      const getCurrentPage = slidesWidth.value.findIndex(slide =>
+        approximatelyEqual(slide.offsetLeft, currentPos.value, 5)
+      )
+      if (getCurrentPage !== -1) {
+        currentPage.value = getCurrentPage
       }
     }
     const calcCurrentPosition = () => {
@@ -293,23 +276,37 @@ export default {
       calcBounds()
       calcMaxPages()
     }
-    const calcOnScroll = () => {
+   const calcOnScroll = () => {
       if (!vsWrapper.value) {
         return
       }
-
       calcCurrentPosition()
-      calcCurrentPage()
-      calcBounds()
-    }
+     calcCurrentPage()
+     calcBounds()
 
-    const changeSlide = direction => {
-      const nextSlideWidth = calcNextWidth(direction)
+      const scrollThreshold = 50 // Порог для определения края галереи
 
-      if (nextSlideWidth) {
-        vsWrapper.value.scrollBy({ left: nextSlideWidth, behavior: 'smooth' })
+      // Проверяем только для прокрутки вправо
+      if (currentPage.value === slidesWidth.value.length - 1 && vsWrapper.value.scrollLeft >= wrapperScrollWidth.value - wrapperVisibleWidth.value - scrollThreshold) {
+        // Прокрутка в начало
+        setTimeout(() => {
+         vsWrapper.value.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        })
+     }, 1500)
       }
     }
+
+const changeSlide = direction => {
+  if (direction > 0) {
+    currentPage.value = (currentPage.value + 1) % slidesWidth.value.length
+  } else {
+    currentPage.value = (currentPage.value - 1 + slidesWidth.value.length) % slidesWidth.value.length
+  }
+  const nextSlide = slidesWidth.value[currentPage.value]
+  vsWrapper.value.scrollTo({ left: nextSlide.offsetLeft, behavior: 'smooth' })
+}
 
     onMounted(() => {
       calcOnInit()
@@ -318,6 +315,23 @@ export default {
         // Assign to new variable and keep reference for removeEventListener (Avoid Memory Leaks)
         onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
         onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
+
+           calcOnInit()
+      startAutoSlide() // Start auto slide on mount
+
+      if (isClient) {
+        onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
+        onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
+
+        vsWrapper.value.addEventListener('scroll', onScrollFn.value)
+        window.addEventListener('resize', onResizeFn.value)
+
+        // Stop auto slide on user interaction
+        vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
+        // vsWrapper.value.addEventListener('touchend', startAutoSlide)
+        vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
+        // vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
+        }
 
         // Events
         vsWrapper.value.addEventListener('scroll', onScrollFn.value)
@@ -329,9 +343,14 @@ export default {
         // Events
         vsWrapper.value.removeEventListener('scroll', onScrollFn.value)
         window.removeEventListener('resize', onResizeFn.value)
+
+        vsWrapper.value.removeEventListener('touchstart', stopAutoSlide)
+        // vsWrapper.value.removeEventListener('touchend', startAutoSlide)
+        vsWrapper.value.removeEventListener('mouseenter', stopAutoSlide)
+        // vsWrapper.value.removeEventListener('mouseleave', startAutoSlide)
       }
     })
-    return { boundLeft, boundRight, changeSlide, vsWrapper }
+    return { boundLeft, boundRight, changeSlide, vsWrapper, stopAutoSlide  }
   }
 }
 </script>

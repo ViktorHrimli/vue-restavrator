@@ -19,6 +19,7 @@
 						/>
 						<div class="slide-label fs-adaptive-l fw-900 text-uppercase">Після</div>
 					</div>
+					<h3 class="slide-description fs-adaptive-l fw-900 text-uppercase" v-text="item[2]"></h3>
 				</Slide>
 			</ui-carousel>
 		<!-- </ClientOnly> -->
@@ -57,6 +58,7 @@
 	@use '@scss/modules/container';
 
 	$breakpoint: 600px;
+	$desktopPoint: 900px;
 
 	.slider-container {
 		position: relative;
@@ -114,6 +116,16 @@
 		// padding: .14em .75em;
 		// border-radius: 15px;
 		// background-color: color.$accent;
+	}
+
+	.slide-description {
+    color: inherit;
+	margin-right: auto;
+	margin-left: auto;
+
+	@include media.from($breakpoint) {	
+	// margin-right: -110px;
+  	}	
 	}
 
 	.slider-footer {
@@ -176,9 +188,11 @@
 
 	const prev = ()=> {
 		theSlider.value.changeSlide(-1)
+		theSlider.value.stopAutoSlide()
 	}
 	const next = ()=> {
 		theSlider.value.changeSlide(1)
+		theSlider.value.stopAutoSlide()
 	}
 
 	const emitPage = (e)=> {
