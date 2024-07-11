@@ -1,0 +1,17 @@
+steps:
+  # Установка Node.js
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['install']
+
+  # Сборка приложения Nuxt.js
+  - name: 'node:18'
+    entrypoint: 'npm'
+    args: ['run', 'build']
+
+  # Развертывание на Google Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'nuxt-app', '--platform', 'managed', '--region', 'us-central1', '--image', 'gcr.io/$PROJECT_ID/nuxt-app']
+
+images:
+  - 'gcr.io/$PROJECT_ID/nuxt-app'
