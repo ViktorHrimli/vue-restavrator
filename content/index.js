@@ -53,13 +53,14 @@ const body = [
 			content:'Більше виконаних робіт у нас в&nbsp;Інстаграмі',
 			instagram: instagram,
 			list: [
-				['/images/case/0.before.mp4','/images/case/0.after.jpg'],
-				['/images/case/1.before.jpg','/images/case/1.after.jpg'],
-				['/images/case/2.before.jpg','/images/case/2.after.jpg'],
-				['/images/case/3.before.jpg','/images/case/3.after.jpg'],
-				['/images/case/4.before.jpg','/images/case/4.after.jpg'],
-				['/images/case/5.before.jpg','/images/case/5.after.jpg'],
-				['/images/case/6.before.jpg','/images/case/6.after.jpg'],
+				['/images/case/0.before.mp4','/images/case/0.after.jpg', 'text BLYAT'],
+				['/images/case/1.before.jpg','/images/case/1.after.jpg', 'text BLYAT'],
+				['/images/case/2.before.jpg','/images/case/2.after.jpg', 'text BLYAT'],
+				['/images/case/3.before.jpg','/images/case/3.after.jpg', 'text BLYAT'],
+				['/images/case/4.before.jpg','/images/case/4.after.jpg', 'text BLYAT'],
+				['/images/case/5.before.jpg','/images/case/5.after.jpg', 'text BLYAT'],
+				['/images/case/6.before.jpg', '/images/case/6.after.jpg', 'text BLYAT'],
+				
 			]
 		},
 		{
@@ -150,7 +151,7 @@ const body = [
 				{
 					question: 'Дешевше купити нове чи реставрувати?',
 					answer: [
-						'Якщо порахувати також супутні витрати то частіше все ж дешевше відновити. Коли мова ведеться про рідкісні, дорогі, дорогі вашій пам‘яті речі - дешевше відновити. Проте справді бувають вападки, коли дешевше замінити зіпсований об‘єкт ніж реставрувати його.',
+						'Якщо порахувати також час та супутні витрати то частіше все ж дешевше відновити. Коли мова ведеться про рідкісні, дорогі, дорогі вашій пам‘яті речі - дешевше відновити. Проте справді бувають вападки, коли дешевше замінити зіпсований об‘єкт ніж реставрувати його.',
 					]
 				},
 				{

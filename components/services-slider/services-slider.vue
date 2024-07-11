@@ -19,6 +19,7 @@
 						/>
 						<div class="slide-label fs-adaptive-l fw-900 text-uppercase">Після</div>
 					</div>
+					<h3 class="slide-description fs-adaptive-l fw-900 text-uppercase" v-text="item[2]"></h3>
 				</Slide>
 			</ui-carousel>
 		<!-- </ClientOnly> -->
@@ -116,6 +117,12 @@
 		// background-color: color.$accent;
 	}
 
+	.slide-description {
+    color: inherit;
+	margin-right: auto;
+	margin-left: auto;
+	}
+
 	.slider-footer {
 		display: none;
 		align-items: center;
@@ -176,9 +183,11 @@
 
 	const prev = ()=> {
 		theSlider.value.changeSlide(-1)
+		theSlider.value.stopAutoSlide()
 	}
 	const next = ()=> {
 		theSlider.value.changeSlide(1)
+		theSlider.value.stopAutoSlide()
 	}
 
 	const emitPage = (e)=> {
