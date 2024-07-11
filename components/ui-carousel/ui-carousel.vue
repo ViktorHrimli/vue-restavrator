@@ -289,10 +289,12 @@ export default {
       // Проверяем только для прокрутки вправо
       if (currentPage.value === slidesWidth.value.length - 1 && vsWrapper.value.scrollLeft >= wrapperScrollWidth.value - wrapperVisibleWidth.value - scrollThreshold) {
         // Прокрутка в начало
-        vsWrapper.value.scrollTo({
+        setTimeout(() => {
+         vsWrapper.value.scrollTo({
           left: 0,
-          behavior: 'auto'
+          behavior: 'smooth'
         })
+     }, 1500)
       }
     }
 
@@ -326,12 +328,10 @@ const changeSlide = direction => {
 
         // Stop auto slide on user interaction
         vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
-        vsWrapper.value.addEventListener('touchend', startAutoSlide)
+        // vsWrapper.value.addEventListener('touchend', startAutoSlide)
         vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
-        vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
+        // vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
         }
-
-        
 
         // Events
         vsWrapper.value.addEventListener('scroll', onScrollFn.value)
@@ -345,9 +345,9 @@ const changeSlide = direction => {
         window.removeEventListener('resize', onResizeFn.value)
 
         vsWrapper.value.removeEventListener('touchstart', stopAutoSlide)
-        vsWrapper.value.removeEventListener('touchend', startAutoSlide)
+        // vsWrapper.value.removeEventListener('touchend', startAutoSlide)
         vsWrapper.value.removeEventListener('mouseenter', stopAutoSlide)
-        vsWrapper.value.removeEventListener('mouseleave', startAutoSlide)
+        // vsWrapper.value.removeEventListener('mouseleave', startAutoSlide)
       }
     })
     return { boundLeft, boundRight, changeSlide, vsWrapper, stopAutoSlide  }

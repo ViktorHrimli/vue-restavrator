@@ -58,6 +58,7 @@
 	@use '@scss/modules/container';
 
 	$breakpoint: 600px;
+	$desktopPoint: 900px;
 
 	.slider-container {
 		position: relative;
@@ -121,6 +122,10 @@
     color: inherit;
 	margin-right: auto;
 	margin-left: auto;
+
+	@include media.from($breakpoint) {	
+	// margin-right: -110px;
+  	}	
 	}
 
 	.slider-footer {
