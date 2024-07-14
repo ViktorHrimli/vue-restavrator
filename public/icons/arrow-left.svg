@@ -1,4 +1,18 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.57 5.92993L3.5 11.9999L9.57 18.0699" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.5 12H3.67004" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="90" height="55" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M1541 4148 c-98 -17 -108 -26 -807 -725 -756 -757 -728 -724 -728
+-863 0 -144 -28 -110 723 -862 632 -633 670 -669 736 -700 204 -94 426 25 451
+243 8 66 -14 153 -53 214 -14 22 -191 204 -394 405 -203 201 -369 371 -369
+377 0 10 396 13 1898 15 l1897 3 51 27 c117 62 185 187 169 313 -9 77 -59 171
+-113 212 -89 67 50 63 -2024 63 -1321 0 -1878 3 -1878 11 0 5 171 180 380 387
+335 333 383 384 407 437 51 113 31 255 -51 352 -56 66 -193 109 -295 91z"/>
+</g>
 </svg>
+

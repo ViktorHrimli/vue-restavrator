@@ -30,7 +30,7 @@ const body = [
 				{ content:'Опали від вогню', icon:'flame' },
 				{ content:'Пошкодження фасадів корпусних меблів', icon:'element-1' },
 				{ content:'Зайві отвори під час ремонту', icon:'graph' },
-				{ content:'Пошкодження ванни та умивальника', icon:'bubble' },
+				{ content:'Пошкодження ванни та умивальника', icon:'moyka' },
 				{ content:'Тріщини та&nbsp;сколи на плитці', icon:'picture-frame' },
 				{ content:'Двері, коробка та лиштва', icon:'sidebar-left' },
 				{ content:'Пошкодження від домашніх улюбленців', icon:'pet' },
@@ -105,7 +105,7 @@ const body = [
 				loop: false,
 				poster:'/images/case/1.before.jpg'
 			},
-			count: 2500,
+			count: 3000,
 			content: 'виконаних реставрацій та понад 500 відгуків',
 			footerContent: `Більше відгуків у нас в Інстаграмі//@${instagram}`,
 		},
