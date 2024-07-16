@@ -20,11 +20,11 @@
 		</ui-carousel>
 		<!-- </ClientOnly> -->
 		<div class="slider-footer">
-			<button class="c-button" :disabled="theSlider?.boundLeft" @click="prev" aria-label="slide prev">
-				<inline-svg src="/icons/arrow-left.svg" />
+			<button class="c-button" @click="prev" aria-label="slide prev">
+				<inline-svg src="/images/arrow-left.svg" class="icon-left" />
 			</button>
-			<button class="c-button" :disabled="theSlider?.boundRight" @click="next" aria-label="slide next">
-				<inline-svg src="/icons/right-arrow.svg" />
+			<button class="c-button" @click="next" aria-label="slide next">
+				<inline-svg src="/images/arrow-right.svg" class="icon-right" />
 			</button>
 		</div>
 	</div>
@@ -161,17 +161,53 @@ $desktopPoint: 900px;
 
 
 	& * {
-
 		transition: .25s ease;
 		fill: #202020;
 	}
-
-
 
 	&:not(:disabled):hover * {
 		fill: color.$accent;
 	}
 }
+
+.icon-right {
+	animation: transformArrowRight 2s infinite;
+}
+
+@keyframes transformArrowRight {
+	0% {
+		transform: translateX(10px);
+	}
+
+	50% {
+		transform: translateX(0px);
+	}
+
+	100% {
+		transform: translateX(10px);
+	}
+}
+
+
+.icon-left {
+	animation: transformArrowLeft 2s infinite;
+}
+
+@keyframes transformArrowLeft {
+	0% {
+		transform: translateX(-10px);
+	}
+
+	50% {
+		transform: translateX(0px);
+	}
+
+	100% {
+		transform: translateX(-10px);
+	}
+}
+
+
 
 
 
