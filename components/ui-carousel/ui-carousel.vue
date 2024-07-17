@@ -179,6 +179,7 @@ export default {
     const onResizeFn = ref(null)
     const onScrollFn = ref(null)
     const autoSlideInterval = ref(null)
+    const userInteracted = ref(false)
 
     // Watchers
     watch(currentPage, (current, previous) => {
@@ -281,20 +282,23 @@ export default {
         return
       }
       calcCurrentPosition()
-     calcCurrentPage()
-     calcBounds()
+      calcCurrentPage()
+      calcBounds()
 
       const scrollThreshold = 50 // Порог для определения края галереи
 
-      // Проверяем только для прокрутки вправо
+     if (currentPage.value - 1  === slidesWidth.value.length - 1) {
+        userInteracted.value = true
+      }
+
       if (currentPage.value === slidesWidth.value.length - 1 && vsWrapper.value.scrollLeft >= wrapperScrollWidth.value - wrapperVisibleWidth.value - scrollThreshold) {
-        // Прокрутка в начало
-        setTimeout(() => {
-         vsWrapper.value.scrollTo({
-          left: 0,
-          behavior: 'smooth'
-        })
-     }, 1500)
+        if (userInteracted.value) {
+          vsWrapper.value.scrollTo({
+            left: 0,
+            behavior: 'auto'
+          })
+          userInteracted.value = false
+        }
       }
     }
 
