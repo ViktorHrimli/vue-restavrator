@@ -8,7 +8,7 @@ steps:
   # Сборка приложения Nuxt.js
   - name: "node:18"
     entrypoint: "npm"
-    args: ["run", "build"]
+    args: ["run", "generate"]
 
   # Развертывание на Google Cloud Run
   - name: "gcr.io/cloud-builders/gcloud"
