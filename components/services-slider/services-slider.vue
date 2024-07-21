@@ -137,7 +137,7 @@ $desktopPoint: 900px;
 }
 
 .slider-footer {
-	display: none;
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 1.5em;
@@ -158,7 +158,6 @@ $desktopPoint: 900px;
 	&:disabled {
 		opacity: .6;
 	}
-
 
 	& * {
 		transition: .25s ease;
@@ -217,9 +216,9 @@ $desktopPoint: 900px;
 		gap: 40px;
 	}
 
-	.slider-footer {
-		display: flex;
-	}
+	// .slider-footer {
+	// 	display: flex;
+	// }
 }
 </style>
 

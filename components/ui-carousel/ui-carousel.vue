@@ -1,115 +1,108 @@
 <template>
   <div class="vs-carousel">
-    <div
-      ref="vsWrapper"
-      class="vs-carousel__wrapper"
-    >
+    <div ref="vsWrapper" class="vs-carousel__wrapper">
       <!-- @slot Slot for Slides -->
       <slot />
     </div>
 
     <!-- @slot Slot for Arrows -->
-    <slot
-      v-if="!hideArrows"
-      name="arrows"
-      :change-slide="changeSlide"
-      :bound-left="boundLeft"
-      :bound-right="boundRight"
-    >
-    
+    <slot v-if="!hideArrows" name="arrows" :change-slide="changeSlide" :bound-left="boundLeft"
+      :bound-right="boundRight">
+
     </slot>
   </div>
 </template>
 
 <style lang='scss'>
-	@use '@scss/helpers/media';
+@use '@scss/helpers/media';
 
-	@mixin mobile {
-		@include media.mobile {
-			@content;
-		}
-	}
-	@mixin desktop {
-		@include media.from-mobile {
-			@content;
-		}
-	}
+@mixin mobile {
+  @include media.mobile {
+    @content;
+  }
+}
 
-	.vs-carousel {
-		position: relative;
-	}
+@mixin desktop {
+  @include media.from-mobile {
+    @content;
+  }
+}
+
+.vs-carousel {
+  position: relative;
+}
 
 .vs-carousel__wrapper {
-	display: flex;
-	overflow-x: scroll;
-	overflow-y: hidden;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	scrollbar-width: none;
-	-webkit-overflow-scrolling: touch;
-	-ms-overflow-style: none;
-	list-style: none;
-	margin: 0;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  list-style: none;
+  margin: 0;
 
-	@include media.mobile {
+  @include media.mobile {
 
-        padding: 0 10px;
+    padding: 0 10px;
     max-width: calc(100% + 20px); // Измените, если нужно
     margin-left: -10px;
     margin-right: -10px;
     // oldest style
-		// padding: 0 10px;
-		// max-width: calc(100% + 40px);
+    // padding: 0 10px;
+    // max-width: calc(100% + 40px);
     // margin-left: -20px;
     // margin-right: -20px;
-	}
+  }
 }
 
 .vs-carousel__wrapper::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .vs-carousel__slide {
-	flex: 0 0 100%;
-	height: 100%;
-	scroll-snap-align: start;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	outline: none;
-	flex-shrink: 0;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  flex-shrink: 0;
 
-	@include media.from-mobile {
-		scroll-snap-align: start;
-	}
-	@include media.mobile {
-		scroll-snap-align: start;
-	}
+  @include media.from-mobile {
+    scroll-snap-align: start;
+  }
+
+  @include media.mobile {
+    scroll-snap-align: start;
+  }
 }
 
 .vs-carousel__arrows {
-	padding: 0;
-	cursor: pointer;
+  padding: 0;
+  cursor: pointer;
 
-	display: none;
+  display: none;
 
-	@include media.from-mobile {
-		display: block;
-	}
+  @include media.from-mobile {
+    display: block;
+  }
 }
 
 .vs-carousel__arrows:disabled {
-	cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 .vs-carousel__arrows--left {
-	left: 10px;
+  left: 10px;
 }
 
 .vs-carousel__arrows--right {
-	right: 10px;
+  right: 10px;
 }
-
 </style>
 
 <script>
@@ -121,7 +114,7 @@ import vSvg from 'vue-inline-svg'
 
 const SCROLL_DEBOUNCE = 100
 const RESIZE_DEBOUNCE = 410
-const AUTO_SLIDE_INTERVAL = 2500 
+const AUTO_SLIDE_INTERVAL = 2500
 
 const props = {
   /**
@@ -160,11 +153,11 @@ const props = {
 
 export default {
   name: 'Carousel',
-	components: {
-		vButton,
-		vSvg,
-	},
-	// emits: ['scroll'],
+  components: {
+    vButton,
+    vSvg,
+  },
+  // emits: ['scroll'],
   props,
   setup(_, { emit }) {
     const vsWrapper = ref(null)
@@ -232,7 +225,7 @@ export default {
       wrapperVisibleWidth.value = vsWrapper.value.offsetWidth
     }
     const calcSlidesWidth = () => {
-      const childNodes = [ ...vsWrapper.value.children ]
+      const childNodes = [...vsWrapper.value.children]
 
       slidesWidth.value = childNodes.map(node => ({
         offsetLeft: node.offsetLeft,
@@ -241,16 +234,16 @@ export default {
     }
 
     const startAutoSlide = () => {
-    autoSlideInterval.value = setInterval(() => {
+      autoSlideInterval.value = setInterval(() => {
         changeSlide(1)
-    }, AUTO_SLIDE_INTERVAL)
+      }, AUTO_SLIDE_INTERVAL)
     }
 
     const stopAutoSlide = () => {
       clearInterval(autoSlideInterval.value)
     }
 
-   const calcCurrentPage = () => {
+    const calcCurrentPage = () => {
       const getCurrentPage = slidesWidth.value.findIndex(slide =>
         approximatelyEqual(slide.offsetLeft, currentPos.value, 5)
       )
@@ -277,40 +270,47 @@ export default {
       calcBounds()
       calcMaxPages()
     }
-   const calcOnScroll = () => {
+
+    const calcOnScroll = () => {
       if (!vsWrapper.value) {
         return
       }
+
       calcCurrentPosition()
       calcCurrentPage()
       calcBounds()
 
-      const scrollThreshold = 50 // Порог для определения края галереи
+      const scrollThreshold = 100 // Threshold to determine the edge of the gallery
 
-     if (currentPage.value - 1  === slidesWidth.value.length - 1) {
-        userInteracted.value = true
-      }
-
+      // Check if the user is trying to scroll past the last slide
       if (currentPage.value === slidesWidth.value.length - 1 && vsWrapper.value.scrollLeft >= wrapperScrollWidth.value - wrapperVisibleWidth.value - scrollThreshold) {
         if (userInteracted.value) {
+          // Smoothly scroll back to the beginning only if the user has interacted
           vsWrapper.value.scrollTo({
             left: 0,
-            behavior: 'auto'
+            behavior: 'smooth'
           })
-          userInteracted.value = false
+          // Reset the current page to the first slide
+          currentPage.value = 0
+          userInteracted.value = false // Reset user interaction flag
         }
+      }
+
+      // Set userInteracted flag when reaching the last slide
+      if (currentPage.value + 1 === slidesWidth.value.length) {
+        userInteracted.value = true
       }
     }
 
-const changeSlide = direction => {
-  if (direction > 0) {
-    currentPage.value = (currentPage.value + 1) % slidesWidth.value.length
-  } else {
-    currentPage.value = (currentPage.value - 1 + slidesWidth.value.length) % slidesWidth.value.length
-  }
-  const nextSlide = slidesWidth.value[currentPage.value]
-  vsWrapper.value.scrollTo({ left: nextSlide.offsetLeft, behavior: 'smooth' })
-}
+    const changeSlide = direction => {
+      if (direction > 0) {
+        currentPage.value = (currentPage.value + 1) % slidesWidth.value.length
+      } else {
+        currentPage.value = (currentPage.value - 1 + slidesWidth.value.length) % slidesWidth.value.length
+      }
+      const nextSlide = slidesWidth.value[currentPage.value]
+      vsWrapper.value.scrollTo({ left: nextSlide.offsetLeft, behavior: 'smooth' })
+    }
 
     onMounted(() => {
       calcOnInit()
@@ -320,21 +320,21 @@ const changeSlide = direction => {
         onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
         onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
 
-           calcOnInit()
-      startAutoSlide() // Start auto slide on mount
+        calcOnInit()
+        startAutoSlide() // Start auto slide on mount
 
-      if (isClient) {
-        onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
-        onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
+        if (isClient) {
+          onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
+          onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
 
-        vsWrapper.value.addEventListener('scroll', onScrollFn.value)
-        window.addEventListener('resize', onResizeFn.value)
+          vsWrapper.value.addEventListener('scroll', onScrollFn.value)
+          window.addEventListener('resize', onResizeFn.value)
 
-        // Stop auto slide on user interaction
-        vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
-        // vsWrapper.value.addEventListener('touchend', startAutoSlide)
-        vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
-        // vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
+          // Stop auto slide on user interaction
+          vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
+          // vsWrapper.value.addEventListener('touchend', startAutoSlide)
+          vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
+          // vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
         }
 
         // Events
@@ -354,7 +354,7 @@ const changeSlide = direction => {
         // vsWrapper.value.removeEventListener('mouseleave', startAutoSlide)
       }
     })
-    return { boundLeft, boundRight, changeSlide, vsWrapper, stopAutoSlide  }
+    return { boundLeft, boundRight, changeSlide, vsWrapper, stopAutoSlide }
   }
 }
 </script>
