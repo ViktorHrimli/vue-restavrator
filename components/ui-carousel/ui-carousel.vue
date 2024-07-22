@@ -173,6 +173,7 @@ export default {
     const onScrollFn = ref(null)
     const autoSlideInterval = ref(null)
     const userInteracted = ref(false)
+    const resumeAutoSlideTimeout = ref(null)
 
     // Watchers
     watch(currentPage, (current, previous) => {
@@ -241,6 +242,8 @@ export default {
 
     const stopAutoSlide = () => {
       clearInterval(autoSlideInterval.value)
+      clearTimeout(resumeAutoSlideTimeout.value)
+      resumeAutoSlideTimeout.value = setTimeout(startAutoSlide, INACTIVITY_TIMEOUT)
     }
 
     const calcCurrentPage = () => {
@@ -323,19 +326,19 @@ export default {
         calcOnInit()
         startAutoSlide() // Start auto slide on mount
 
-        if (isClient) {
-          onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
-          onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
 
-          vsWrapper.value.addEventListener('scroll', onScrollFn.value)
-          window.addEventListener('resize', onResizeFn.value)
+        onScrollFn.value = debounce(calcOnScroll, SCROLL_DEBOUNCE)
+        onResizeFn.value = debounce(calcOnInit, RESIZE_DEBOUNCE)
 
-          // Stop auto slide on user interaction
-          vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
-          // vsWrapper.value.addEventListener('touchend', startAutoSlide)
-          vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
-          // vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
-        }
+        vsWrapper.value.addEventListener('scroll', onScrollFn.value)
+        window.addEventListener('resize', onResizeFn.value)
+
+        // Stop auto slide on user interaction
+        vsWrapper.value.addEventListener('touchstart', stopAutoSlide)
+        vsWrapper.value.addEventListener('touchend', startAutoSlide)
+        vsWrapper.value.addEventListener('mouseenter', stopAutoSlide)
+        vsWrapper.value.addEventListener('mouseleave', startAutoSlide)
+
 
         // Events
         vsWrapper.value.addEventListener('scroll', onScrollFn.value)
@@ -345,11 +348,12 @@ export default {
     onBeforeUnmount(() => {
       if (isClient) {
         // Events
+        startAutoSlide()
         vsWrapper.value.removeEventListener('scroll', onScrollFn.value)
         window.removeEventListener('resize', onResizeFn.value)
 
         vsWrapper.value.removeEventListener('touchstart', stopAutoSlide)
-        // vsWrapper.value.removeEventListener('touchend', startAutoSlide)
+        vsWrapper.value.removeEventListener('touchend', startAutoSlide)
         vsWrapper.value.removeEventListener('mouseenter', stopAutoSlide)
         // vsWrapper.value.removeEventListener('mouseleave', startAutoSlide)
       }
