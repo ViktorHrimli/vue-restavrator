@@ -100,6 +100,56 @@ const body = [
 					"/images/case/7.after.jpg",
 					"Пошкодження ванни та умивальника",
 				],
+				[
+					"/images/case/8.before.jpg",
+					"/images/case/8.after.jpg",
+					"Пошкодження дверей домашнім улюбленцем",
+				],
+				[
+					"/images/case/9.before.jpg",
+					"/images/case/9.after.jpg",
+					"Пошкодження плінтусу домашнім улюбленцем",
+				],
+				[
+					"/images/case/10.before.jpg",
+					"/images/case/10.after.jpg",
+					"Реставрація невдалого отвору в керамограніті",
+				],
+				[
+					"/images/case/11.before.jpg",
+					"/images/case/11.after.jpg",
+					"Пошкодження шпону шафи",
+				],
+				[
+					"/images/case/12.before.jpg",
+					"/images/case/12.after.jpg",
+					"Пошкодження  лакового покриття паркету",
+				],
+				[
+					"/images/case/13.before.jpg",
+					"/images/case/13.after.jpg",
+					"Пошкодження острову з керамограніту",
+				],
+				[
+					"/images/case/14.before.jpg",
+					"/images/case/14.after.jpg",
+					"Пошкодження стільниці з рекамограніту",
+				],
+				[
+					"/images/case/15.before.jpg",
+					"/images/case/15.after.jpg",
+					"Пошкодження столу з штучного каменю",
+				],
+				[
+					"/images/case/16.before.jpg",
+					"/images/case/16.after.jpg",
+					"Пошкодження сходів домашнім улюбленцем",
+				],
+				[
+					"/images/case/17.before.jpg",
+					"/images/case/17.after.jpg",
+					"Пошкодження HPL стільниці",
+				],
 			],
 		},
 		{
