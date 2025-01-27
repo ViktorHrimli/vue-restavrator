@@ -1,5 +1,25 @@
 <template>
-	<form @submit.prevent="submitForm" class="c-form fs-adaptive-m" ref="form">
+
+	<div class="c-wrapper">
+
+		<a href="https://t.me/m/ZiG5MYJZMGFi" target="_blank" rel="noopener noreferrer" class="k-button"
+			style="width: 100%;">
+			<ui-button v-bind="tg" id="gtm-btn-tg"></ui-button>
+		</a>
+
+		<a href="https://www.instagram.com/restavrator_ua/" target="_blank" rel="noopener noreferrer" class="k-button"
+			style="width: 100%;">
+			<ui-button v-bind="inst" id="gtm-btn-in"></ui-button>
+		</a>
+
+		<a href="viber://pa?chatURI=restavrator" target="_blank" rel="noopener noreferrer" class="k-button"
+			style="width: 100%;">
+			<ui-button v-bind="viber" id="gtm-btn-vb"></ui-button>
+		</a>
+
+	</div>
+
+	<!-- <form @submit.prevent="submitForm" class="c-form fs-adaptive-m" ref="form">
 		<div class="c-body">
 			<form-fieldset>
 				<inputs-group>
@@ -27,10 +47,18 @@
 		<footer class="c-footer">
 			<ui-button v-bind="submitButton" class="k-button" id="gtm-btn" />
 		</footer>
-	</form>
+	</form> -->
 </template>
 
 <style scoped lang="scss">
+.c-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
 .c-body {
 	font-size: 24px;
 }
@@ -53,12 +81,40 @@ const emit = defineEmits(["submit"]);
 const $crm = new CRM();
 const form = ref(null);
 
-const submitButton = {
-	content: "Надіслати",
+
+// const submitButton = {
+// 	content: "Надіслати",
+// 	expand: true,
+// 	size: "m",
+// 	icon: "send-2",
+// 	type: "submit",
+// };
+
+const tg = {
+	content: "Telegram",
 	expand: true,
-	size: "m",
-	icon: "send-2",
-	type: "submit",
+	size: "s",
+	icon: "telegram",
+	type: "button",
+	href: 'https://t.me/m/ZiG5MYJZMGFi'
+};
+
+const viber = {
+	content: "Viber",
+	expand: true,
+	size: "s",
+	icon: "viber",
+	type: "button",
+	href: "https://www.viber.com/restavrator",
+};
+
+const inst = {
+	content: "Instagram",
+	expand: true,
+	size: "s",
+	icon: "instagram",
+	type: "button",
+	href: "https://www.instagram.com/restavrator_ua/",
 };
 
 const formData = {

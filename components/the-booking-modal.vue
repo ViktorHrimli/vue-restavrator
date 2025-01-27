@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<wa-modal
-			ref="theModal"
-		>
+		<wa-modal ref="theModal">
 			<template #header>
 				<ui-title v-bind="modalTitle" />
 			</template>
@@ -16,9 +14,7 @@
 			</template> -->
 		</wa-modal>
 
-		<wa-modal
-			ref="tnxModal"
-		>
+		<wa-modal ref="tnxModal">
 			<template #header>
 				<ui-title v-bind="tnxModalTitle" />
 			</template>
@@ -36,80 +32,80 @@
 
 
 <style scoped lang='scss'>
-	@use '@scss/color';
+@use '@scss/color';
 
-	.the-modal {
-		margin-top: 20px;
-	}
+.the-modal {
+	margin-top: 20px;
+}
 
-	.c-modal-content {
-		color: color.$gray-text;
-	}
+.c-modal-content {
+	color: color.$gray-text;
+}
 
-	.c-close-button {
-		display: block;
-		padding: 5px 10px;
-		background-color: transparent;
-		margin: 0;
-		border: none;
-		color: color.$dark;
-		text-align: center;
-		align-self: center;
-	}
+.c-close-button {
+	display: block;
+	padding: 5px 10px;
+	background-color: transparent;
+	margin: 0;
+	border: none;
+	color: color.$dark;
+	text-align: center;
+	align-self: center;
+}
 
-	.c-footer-content {
-		color: color.$gray-text;
-		font-size: 14px;
-	}
+.c-footer-content {
+	color: color.$gray-text;
+	font-size: 14px;
+}
 </style>
 
 
 <script setup>
-	const theModal = ref()
-	const tnxModal = ref()
+const theModal = ref()
+const tnxModal = ref()
 
-	const modalTitle = {
-		content:'Безкоштовно розрахуємо вартість реставрації без виїзду майстра',
-		size:'m'
-	}
-	const modalContent = {
-		content:[
-			'залиште контакти і наші менеджери зв‘яжуться з вами та&nbsp;безкоштовно порахують вартість реставрації',
-		],
-		size:'s'
-	}
-	const modalFooterContent = {
-		content:[
-			'Натискаючи кнопку Надіслати» ви погоджуєтеся на обробку персональних даних.',
-		]
-	}
+const modalTitle = {
+	content: 'Безкоштовно розрахуємо вартість реставрації без виїзду майстра',
+	size: 'm'
+}
+const modalContent = {
+	content: [
+		'Оберіть зручний для вас месенджер та почніть діалог з нашим менеджером прямо зараз!',
+	],
+	size: 's'
+}
+const modalFooterContent = {
+	content: [
+		'Натискаючи кнопку Надіслати» ви погоджуєтеся на обробку персональних даних.',
+	]
+}
 
-	const tnxModalTitle = {
-		content:'Запит надіслано',
-	}
-	const tnxModalContent = {
-		content:'Невдовзі ми зв‘яжемось з&nbsp;вами в&nbsp;одному з&nbsp;мессенджерів за вказаним номером чи по&nbsp;телефону 💬',
-	}
+const tnxModalTitle = {
+	content: 'Запит надіслано',
+}
+const tnxModalContent = {
+	content: 'Невдовзі ми зв‘яжемось з&nbsp;вами в&nbsp;одному з&nbsp;мессенджерів за вказаним номером чи по&nbsp;телефону 💬',
+}
 
-	const tnxButton = {
-		content:'Зрозуміло',
-		expandOnMobile: true,
-		onClick: ()=> tnxModal.value.close()
-	}
+const tnxButton = {
+	content: 'Зрозуміло',
+	expandOnMobile: true,
+	onClick: () => tnxModal.value.close()
+}
 
 
 
-	const onSubmited = (formData) => {
-		close()
-		tnxModal.value.open()
-	}
-	const open = (trackSource)=>{
-		theModal.value.open()
-		useTrackEvent('openBookingModal', {source:trackSource, title: modalTitle?.content})
-	}
-	const close = ()=>{
-		theModal.value.close()
-	}
+const onSubmited = (formData) => {
+	close()
+	tnxModal.value.open()
+}
+const open = (trackSource) => {
+	theModal.value.open()
+	useTrackEvent('openBookingModal', { source: trackSource, title: modalTitle?.content })
+}
+const close = () => {
+	theModal.value.close()
+}
 
-	defineExpose({open,close})
+defineExpose({ open, close })
 </script>
