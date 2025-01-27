@@ -198,7 +198,7 @@ const body = [
 				loop: false,
 				poster: "/images/case/1.before.jpg",
 			},
-			count: 3000,
+			count: 4000,
 			content: "виконаних реставрацій та понад 500 відгуків",
 			footerContent: `Більше відгуків у нас в Інстаграмі//@${instagram}`,
 		},
