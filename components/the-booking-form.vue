@@ -7,10 +7,10 @@
 			<ui-button v-bind="tg" id="gtm-btn-tg"></ui-button>
 		</a>
 
-		<a href="https://www.instagram.com/restavrator_ua/" target="_blank" rel="noopener noreferrer" class="k-button"
+		<!-- <a href="https://www.instagram.com/restavrator_ua/" target="_blank" rel="noopener noreferrer" class="k-button"
 			style="width: 100%;">
 			<ui-button v-bind="inst" id="gtm-btn-in"></ui-button>
-		</a>
+		</a> -->
 
 		<a href="viber://pa?chatURI=restavrator" target="_blank" rel="noopener noreferrer" class="k-button"
 			style="width: 100%;">
