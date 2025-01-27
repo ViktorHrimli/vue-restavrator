@@ -12,7 +12,7 @@
 			<ui-button v-bind="inst" id="gtm-btn-in"></ui-button>
 		</a> -->
 
-		<a href="viber://pa?chatURI=restavrator" target="_blank" rel="noopener noreferrer" class="k-button"
+		<a href="viber://chat?number=%2B380934439393" target="_blank" rel="noopener noreferrer" class="k-button"
 			style="width: 100%;">
 			<ui-button v-bind="viber" id="gtm-btn-vb"></ui-button>
 		</a>

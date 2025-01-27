@@ -108,8 +108,10 @@ a:disabled {
 
 	&.color-yellow {
 		--color: #{color.$yellow};
+		// --color: #{#{color.$accent-hover}};
 		--font-color: #202020;
-		background-color: color.$yellow;
+		// background-color: color.$yellow;
+		background-color: #fff;
 	}
 
 
