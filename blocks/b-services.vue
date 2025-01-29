@@ -85,9 +85,10 @@ $card-padding: 5.173%;
 
 .c-scratch {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: -5px;
+	top: -4px;
 	width: 34%;
+	rotate: 270deg;
 	max-width: 138px;
 	z-index: 1;
 	pointer-events: none;

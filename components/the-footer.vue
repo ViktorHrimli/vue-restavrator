@@ -116,7 +116,7 @@
 
 	.footer-menu {
 		flex-flow: row;
-		gap: 5em;
+		gap: 1.5em;
 		margin-left: 40px;
 	}
 
@@ -148,6 +148,14 @@ const footerMenu = [
 	{
 		content: 'послуги',
 		href: '#services',
+	},
+	{
+		content: 'політика конфіденційності',
+		href: '/privacy-policy.pdf',
+	},
+	{
+		content: 'публічна оферта',
+		href: '/offer.pdf',
 	},
 ]
 

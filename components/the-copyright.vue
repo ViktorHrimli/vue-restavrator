@@ -1,9 +1,9 @@
 <template>
 	<root-section padding-top="i" padding-bottom="i" class="c-wp">
 		<div class="content-container">
-			<div class="component-copyright">
+			<!-- <div class="component-copyright">
 				<span v-html="showYear" /> @Restavrator_ua&nbsp;&trade;
-			</div>
+			</div> -->
 		</div>
 	</root-section>
 </template>
@@ -48,11 +48,12 @@
 	}
 }
 
-.c-link > span.before {
+.c-link>span.before {
 	text-align: right;
 }
-.c-link > span.before,
-.c-link > span.after {
+
+.c-link>span.before,
+.c-link>span.after {
 	padding-top: 3px;
 }
 
@@ -60,6 +61,7 @@
 	.content-container {
 		flex-direction: column-reverse;
 	}
+
 	.component-copyright {
 		margin-top: 1em;
 		opacity: 0.6;
