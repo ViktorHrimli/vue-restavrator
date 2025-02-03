@@ -8,7 +8,7 @@
 					<div class="c-label-wp">
 						<ui-title class="the-title the-label" ref="labelAnimationRef" v-bind="theTitle" :content="label"
 							tag="div" v-if="label" />
-						<adaptive-image class="the-scratch" src="/images/scratch-hero.png" alt="hero scratch"
+						<adaptive-image class="the-scratch" src="/images/scratch-hero.jpg" alt="hero scratch"
 							sizes="mobile:150px tablet:300px" width="100%" />
 					</div>
 					<ui-paragraph class="the-content" ref="contentAnimationRef" v-bind="theContent" v-if="content" />
