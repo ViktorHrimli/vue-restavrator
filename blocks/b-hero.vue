@@ -8,8 +8,8 @@
 					<div class="c-label-wp">
 						<ui-title class="the-title the-label" ref="labelAnimationRef" v-bind="theTitle" :content="label"
 							tag="div" v-if="label" />
-						<adaptive-image class="the-scratch" src="/images/scratch-hero.jpg" alt="hero scratch"
-							sizes="mobile:150px tablet:300px" width="100%" />
+						<adaptive-image class="the-scratch" src="/images/scratch-hero.png" alt="hero scratch"
+							sizes="mobile:150px tablet:300px" width="80%" />
 					</div>
 					<ui-paragraph class="the-content" ref="contentAnimationRef" v-bind="theContent" v-if="content" />
 					<ui-button class="the-button" v-bind="theButton" v-if="buttonText" @click="openModal" />
@@ -124,8 +124,14 @@ $breakpoint: 760px;
 
 .the-scratch {
 	max-width: 298px;
+	width: 80%;
 	flex-shrink: 2;
 	transform: translateY(-15%);
+
+	@include mobile {
+		width: 100%;
+		transform: translateY(-10%);
+	}
 }
 
 .the-content {
