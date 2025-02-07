@@ -1,5 +1,5 @@
 // export const phone = '+380 93 443 93 93'
-export const phone = "+38 080 033 42 73";
+export const phone = "0 800 334 273";
 
 export const instagram = "restavrator_ua";
 export const telegram = "@Restavrator_manager";
